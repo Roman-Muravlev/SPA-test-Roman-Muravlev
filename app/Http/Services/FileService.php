@@ -29,8 +29,7 @@ class FileService
             $extension = $file->getClientOriginalExtension();
             $uploadFile = in_array($extension, ['jpg', 'png', 'jpeg'])
                 ? $this->convertImage($file) : $file;
-            $name = $file->getClientOriginalName();
-            $path = 'comments/' . $comment->id . '/' . $name;
+            $path = 'comments/' . $comment->id;
             $store = Storage::disk('public')->putFile($path,$uploadFile);
             $url = Storage::url($store);
         }
