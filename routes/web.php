@@ -18,8 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('comments')->name('comments.')->group(function () {
+Route::prefix('/comments')->name('comments.')->group(function () {
     Route::get('/',[CommentController::class, 'index'])->name('index');
     Route::post('/store',[CommentController::class, 'store'])->name('store');
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

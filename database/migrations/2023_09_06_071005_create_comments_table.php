@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->text('text');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('parent_id');
-            $table->string('url');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('parent_id')->references('id')->on('comments');
