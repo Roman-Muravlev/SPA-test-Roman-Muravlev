@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
+use App\Http\Services\FileService;
 use App\Models\Comment;
 use App\Models\User;
 use GuzzleHttp\Psr7\Request;
@@ -10,6 +11,10 @@ use Illuminate\Support\Str;
 
 class CommentController extends Controller
 {
+    public function __construct(FileService $fileService)
+    {
+        $this->fileService = $fileService;
+    }
     public function index()
     {
         $comments = Comment::get();
@@ -28,11 +33,13 @@ class CommentController extends Controller
             'user_id' => $user->id,
             'text' => $data['text'],
             'url' => $data['url'],
-            'parent_id' => $data['parent_id']
+            'parent_id' => $data['parent_id'],
         ]);
 
         if (!empty($data['file'])) {
-            //TODO
+            $comment->commentFile()->create([
+                'file' => $this->fileService->saveStorage($request,$comment)
+            ]);
         }
 
         return redirect()->route('comments.index');

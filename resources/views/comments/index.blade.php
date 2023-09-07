@@ -11,7 +11,7 @@
     <title>SPA</title>
 </head>
 <body>
-    <form action="{{ route('comments.store') }}" method="POST">
+    <form action="{{ route('comments.store') }}" method="POST" enctype='multipart/form-data'>
         @csrf
         <div class="form-group">
             <input type="text" class="form-control m-3" name="name" placeholder="Enter your name">
@@ -26,7 +26,7 @@
             <textarea class="form-control m-3" name="text" rows="3"></textarea>
         </div>
         <div class="form-group">
-            <input type="file" class="form-control-file m-3">
+            <input type="file" name="file" class="form-control-file m-3">
         </div>
         <div class="form-group">
             <input type="hidden" class="form-control-hidden m-3" name="parent_id">
