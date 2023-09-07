@@ -17,6 +17,6 @@ class CommentFile extends Model
 
     public function comment(): BelongsTo
     {
-        return $this->belongsTo(Comment::class, 'id', 'comment_id');
+        return $this->belongsTo(Comment::class);
     }
 }
