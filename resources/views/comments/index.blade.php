@@ -33,5 +33,28 @@
         </div>
         <button type="submit" class="btn btn-primary m-3">Submit</button>
     </form>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Created at</th>
+            <th class="w-50" scope="col">Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($comments as $comment)
+        <tr>
+            <td>{{ $comment->user->name }}</td>
+            <td>{{ $comment->user->email }}</td>
+            <td>{{ Carbon\Carbon::parse($comment->created_at)->toDateTimeString() }}</td>
+            <td>{!! $comment->text !!}</td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <div class="m-3">
+        {{ $comments->links() }}
+    </div>
 </body>
 </html>

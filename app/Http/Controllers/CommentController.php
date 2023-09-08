@@ -6,7 +6,6 @@ use App\Http\Requests\CommentRequest;
 use App\Http\Services\FileService;
 use App\Models\Comment;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Str;
 
 class CommentController extends Controller
@@ -17,7 +16,7 @@ class CommentController extends Controller
     }
     public function index()
     {
-        $comments = Comment::get();
+        $comments = Comment::paginate(10);
 
         return view('comments.index', ['comments' => $comments]);
     }
