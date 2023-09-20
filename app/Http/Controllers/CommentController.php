@@ -33,6 +33,7 @@ class CommentController extends Controller
             'text' => $data['text'],
             'url' => $data['url'],
             'parent_id' => $data['parent_id'],
+            'captcha' => $data['captcha'],
         ]);
 
         if (!empty($data['file'])) {
@@ -42,5 +43,10 @@ class CommentController extends Controller
         }
 
         return redirect()->route('comments.index');
+    }
+
+    public function reloadCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
     }
 }

@@ -20,6 +20,8 @@ class CommentRequest extends FormRequest
             'text' => 'required',
             'file' => 'nullable',
             'parent_id' => 'integer|exist:comments,id|nullable',
+            'captcha' => 'required|captcha',
+            'captcha.captcha'=>'Invalid captcha code.'
         ];
     }
 }

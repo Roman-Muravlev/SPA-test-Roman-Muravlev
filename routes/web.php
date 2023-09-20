@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CaptchaValidationController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::prefix('/comments')->name('comments.')->group(function () {
     Route::post('/store',[CommentController::class, 'store'])->name('store');
 });
 
+Route::get('reload-captcha', [CommentController::class, 'reloadCaptcha'])->name('reloadCaptcha');
 
 Auth::routes();
 
