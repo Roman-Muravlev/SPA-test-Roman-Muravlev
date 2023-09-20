@@ -9,6 +9,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <title>SPA</title>
 </head>
 <body>
@@ -45,6 +46,17 @@ Add comment
                     <div class="form-group m-3">
                         <input type="hidden" class="form-control-hidden " name="parent_id">
                     </div>
+                    <div class="form-group m-3">
+                        <div class="captcha">
+                            <span>{!! captcha_img() !!}</span>
+                            <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                ↻
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group m-3">
+                        <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+                    </div>
                     <button type="submit" class="btn btn-primary m-3">Submit</button>
                 </form>
             </div>
@@ -78,11 +90,22 @@ Add comment
     <div class="m-3">
         {{ $comments->links() }}
     </div>
-
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.ckeditor').ckeditor();
+    });
+</script>
+
+<script type="text/javascript">
+    $('#reload').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'reload-captcha',
+            success: function (data) {
+                $(".captcha span").html(data.captcha);
+            }
+        });
     });
 </script>
 
