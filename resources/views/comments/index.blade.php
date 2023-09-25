@@ -54,7 +54,7 @@ Add comment
                     <div class="form-group m-3">
                         <div class="captcha">
                             <span>{!! captcha_img() !!}</span>
-                            <button type="button" class="btn btn-danger" class="reload" id="reload">
+                            <button type="button" class="btn btn-danger reload" id="reload">
                                 ↻
                             </button>
                         </div>
