@@ -10,6 +10,11 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <title>SPA</title>
 </head>
 <body>
@@ -67,7 +72,7 @@ Add comment
     </div>
 </div>
 </div>
-    <table class="table">
+    <table id="example" class="table table-striped" style="width:100%">
         <thead>
         <tr>
             <th scope="col">Name</th>
@@ -96,7 +101,16 @@ Add comment
         $('.ckeditor').ckeditor();
     });
 </script>
-
+<script>
+    new DataTable('#example', {
+        columnDefs: [
+            { orderable: false, targets: 3 }
+        ],
+        searching: false,
+        info: false,
+        paging: false,
+    });
+</script>
 <script type="text/javascript">
     $('#reload').click(function () {
         $.ajax({
@@ -108,7 +122,6 @@ Add comment
         });
     });
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
